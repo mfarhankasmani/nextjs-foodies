@@ -3,16 +3,9 @@ import Image from "next/image";
 
 import classes from "./meal-item.module.css";
 import { FunctionComponent } from "react";
+import { Meal } from "@/lib/types";
 
-type MealItemProps = {
-  title: string;
-  slug: string;
-  image: string;
-  summary: string;
-  creator: string;
-};
-
-const MealItem: FunctionComponent<MealItemProps> = ({
+const MealItem: FunctionComponent<Meal> = ({
   title,
   slug,
   image,
@@ -23,7 +16,7 @@ const MealItem: FunctionComponent<MealItemProps> = ({
     <article className={classes.meal}>
       <header>
         <div className={classes.image}>
-          <Image src={image} alt={title} fill />
+          <Image src={(image as string)} alt={title} fill />
         </div>
         <div className={classes.headerText}>
           <h2>{title}</h2>
