@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "better-sqlite3": "^11.8.1",
     "next": "15.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -21,6 +22,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.6.0",
+    "@types/better-sqlite3": "^7.6.12",
     "@types/jest": "^29.5.14",
     "@types/node": "^20",
     "@types/react": "^19",
