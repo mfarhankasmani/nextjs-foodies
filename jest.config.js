@@ -11,6 +11,7 @@ const customJestConfig = {
   collectCoverageFrom: [
     "<rootDir>/app/**/*.{ts,tsx}",
     "<rootDir>/components/**/*.{ts,tsx}",
+    "<rootDir>/lib/**/*.{ts,tsx}",
   ],
   // transform: {
   //   "^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }],

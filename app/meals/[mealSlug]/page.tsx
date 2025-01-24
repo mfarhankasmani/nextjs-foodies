@@ -21,7 +21,7 @@ const MealsDetails: FunctionComponent<
     <>
       <header className={classes.header}>
         <div className={classes.image}>
-          <Image src={image} fill alt={title} />
+          <Image src={image as string} fill alt={title} />
         </div>
         <div className={classes.headrText}>
           <h1>{title}</h1>
