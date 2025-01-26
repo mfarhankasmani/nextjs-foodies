@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Foodies - Share Your Favorite Meals
 
-## Getting Started
+Foodies is a Next.js application that allows users to share their favorite meals with a vibrant community. Users can browse delicious meals, share their own recipes, and view detailed information about each meal.
 
-First, run the development server:
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Folder Structure](#folder-structure)
+
+## Features
+
+- Browse a list of delicious meals shared by the community.
+- Share your own favorite recipes with detailed information.
+- View detailed information about each meal, including ingredients and instructions.
+- Dynamic metadata generation for SEO optimization.
+- Incremental Static Regeneration (ISR) for efficient page updates.
+
+## Installation
+
+To get started with the Foodies project, follow these steps:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/mfarhankasmani/foodies.git
+   cd foodies
+   ```
+
+2. Install the dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Run the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+   yarn dev
+```
+Open http://localhost:3000 with your browser to see the result.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Usage
+### Sharing a Meal
 
-## Learn More
+1. Navigate to the "Share Your Favorite Recipe" page.
+2. Fill out the form with your meal details, including title, summary, instructions, and an image.
+3. Submit the form to share your meal with the community.
 
-To learn more about Next.js, take a look at the following resources:
+### Browsing Meals
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Navigate to the home page to browse a list of meals.
+2. Click on a meal to view detailed information about it.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Folder Structure
+The project structure is as follows:
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+foodies/
+├── app/
+│   ├── meals/
+│   │   ├── [mealSlug]/
+│   │   │   └── page.tsx
+│   │   ├── share/
+│   │   │   └── page.tsx
+│   ├── api/
+│   │   └── revalidate.ts
+├── components/
+│   ├── Meals.tsx
+│   ├── ImagePicker.tsx
+├── lib/
+│   ├── meals.ts
+│   ├── types.ts
+│   ├── action.ts
+├── public/
+│   └── images/
+├── styles/
+│   ├── globals.css
+│   ├── page.module.css
+├── .eslintrc.json
+├── .gitignore
+├── jest.config.js
+├── next.config.js
+├── package.json
+├── tsconfig.json
+└── README.md
+```
