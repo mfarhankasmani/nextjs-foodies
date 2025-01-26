@@ -14,7 +14,7 @@ export type Meal = {
 export type SearchParams = { [key: string]: string | string[] | undefined };
 
 export interface ServerSideComponentProp<SlugType, SearchParams = undefined> {
-  params: { [key: string]: SlugType };
+  params: Promise<{ [key: string]: SlugType }>;
   searchParams: SearchParams;
 }
 

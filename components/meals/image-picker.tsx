@@ -7,11 +7,13 @@ import Image from "next/image";
 export default function ImagePicker({
   label,
   name,
+  defaultImage,
 }: {
   label: string;
   name: string;
+  defaultImage?: any;
 }) {
-  const [pickedImage, setPickedImage] = useState<string | null>(null);
+  const [pickedImage, setPickedImage] = useState<string>();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handlePickImage = () => {
@@ -19,10 +21,10 @@ export default function ImagePicker({
   };
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files?.[0] || defaultImage;
 
     if (!file) {
-      setPickedImage(null);
+      setPickedImage(undefined);
       return;
     }
 

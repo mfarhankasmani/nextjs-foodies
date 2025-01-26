@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { saveMeal } from "./meals";
 import { Meal } from "./types";
 import type { File } from "node:buffer";
+import { revalidatePath } from "next/cache";
 
 const isInvalidText = (text: string) => {
   return !text || text.trim() === "";
@@ -38,12 +39,15 @@ const validateMeal = (meal: Meal) => {
   return mealError;
 };
 
-type ErrorState = void | { message: string | null };
+export interface State<T = Meal> {
+  data?: T;
+  message: string | null;
+}
 
 export const shareMeal = async (
-  _prevState: ErrorState,
+  prevState: State | void,
   formData: FormData
-): Promise<ErrorState> => {
+): Promise<State | void> => {
   const meal: Meal = {
     title: formData.get("title") as string,
     summary: formData.get("summary") as string,
@@ -53,14 +57,17 @@ export const shareMeal = async (
     creator_email: formData.get("email") as string,
   };
 
-  const validate = validateMeal(meal);
+  const errors = validateMeal(meal);
 
-  if (validate.length > 0) {
+  if (errors.length > 0) {
     return {
-      message: validate.join("\n"),
+      data: meal,
+      message: errors.join("\n"),
     };
   }
 
   await saveMeal(meal);
+  // Update cache in prod
+  await revalidatePath("/meals", "layout");
   redirect("/meals");
 };

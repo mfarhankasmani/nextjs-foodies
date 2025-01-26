@@ -4,6 +4,23 @@ import { FunctionComponent } from "react";
 import { getMeal } from "@/lib/meals";
 import { ServerSideComponentProp } from "@/lib/types";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: ServerSideComponentProp<string>): Promise<Metadata> {
+  const { mealSlug } = await params;
+  const meal = getMeal(mealSlug);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
 
 const MealsDetails: FunctionComponent<
   ServerSideComponentProp<string>

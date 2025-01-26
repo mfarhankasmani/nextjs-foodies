@@ -2,19 +2,12 @@ import Link from "next/link";
 import classes from "./page.module.css";
 import MealsGrid from "@/components/meals/meals-grid";
 import { getMeals } from "@/lib/meals";
-import { FunctionComponent, Suspense } from "react";
+import { Suspense } from "react";
+import type { Metadata } from "next";
 
-const fetchMeals = new Promise<any>((resolve) => {
-  setTimeout(() => {
-    const meals = getMeals();
-    resolve(meals);
-  }, 5000);
-});
-
-const Meals: FunctionComponent = async () => {
-  const meals = await fetchMeals;
-
-  return <MealsGrid meals={meals} />;
+export const metadata: Metadata = {
+  title: "All Meals",
+  description: "Browse the delicious meals shared by our vibrant community.",
 };
 
 export default async function MealsPage() {
@@ -37,4 +30,10 @@ export default async function MealsPage() {
       </main>
     </>
   );
+}
+
+async function Meals() {
+  const meals = getMeals();
+
+  return <MealsGrid meals={meals} />;
 }
